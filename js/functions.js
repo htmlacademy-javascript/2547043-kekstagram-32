@@ -1,22 +1,30 @@
-//Функция для проверки длины строки.(1)
-const checkStringLength = (string, length) => (string.length <= length);
+const checkStringLength = (string, length) => string.length <= length;
 
-//Функция для проверки, является ли строка палиндромом.
+// Строка короче 20 символов
+checkStringLength('проверяемая строка', 20); // true
+// Длина строки ровно 18 символов
+checkStringLength('проверяемая строка', 18); // true
+// Строка длиннее 10 символов
+checkStringLength('проверяемая строка', 10); // false
+
 const isPalindrome = (string) => {
   let reversedString = '';
-  string = string.toLowerCase();
-  string = string.replaceAll(' ','');
-
-  for (let i = string.length - 1; i >= 0; i--) {
-    reversedString += string[i];
+  const formattedString = string.toLowerCase().replaceAll(' ','');
+  for (let i = formattedString.length - 1; i >= 0; i--) {
+    reversedString += formattedString[i];
   }
-  return (string === reversedString);
+  return formattedString === reversedString;
 };
 
-// *дополнительное задание* Функция которая возвращает положительное число из строки
+// Строка является палиндромом
+isPalindrome('топот'); // true
+// Несмотря на разный регистр, тоже палиндром
+isPalindrome('ДовОд'); // true
+// Это не палиндром
+isPalindrome('Кекс'); // false
 
 const getNum = (string) => {
-  if (typeof string === 'number') { // Если в качестве аргумента получаем число
+  if (typeof string === 'number') {
     string = string.toString();
   }
   let stringOfNumbers = '';
@@ -30,4 +38,13 @@ const getNum = (string) => {
   }
   return parseInt(stringOfNumbers, 10);
 };
+
+getNum('2023 год'); // 2023
+getNum('ECMAScript 2022'); // 2022
+getNum('1 кефир, 0.5 батона');// 105
+getNum('агент 007'); // 7
+getNum('а я томат'); // NaN
+getNum(2023); // 2023
+getNum(-1); // 1
+getNum(1.5); // 15
 
