@@ -38,11 +38,10 @@ const getRandomInteger = (min, max) => {
 const getUniqueRandomInteger = (min, max) => {
   const uniqueValues = [];
   return function () {
-    let currentValue = getRandomInteger (min, max);
+    let currentValue = getRandomInteger(min, max);
     const rangeOfValues = max - min + 1;
     if (uniqueValues.length >= rangeOfValues) {
-      // Перебраны все значения диапозона от min до max
-      return null;
+      throw new Error(`Перебраны все числа из диапазона от ${min} до ${max}`);
     }
     while(uniqueValues.includes(currentValue)) {
       currentValue = getRandomInteger (min, max);
