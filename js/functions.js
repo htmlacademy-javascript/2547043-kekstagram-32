@@ -1,4 +1,3 @@
-
 const clockTimeToMinutes = (timeString) =>
   timeString.split(':').map((current) => Number(current)).reduce((total, current, index) => {
     total += (index === 0 ? current * 60 : current);
