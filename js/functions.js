@@ -3,7 +3,7 @@ const clockTimeToMinutes = (timeString) =>
   timeString.split(':').map((current) => Number(current)).reduce((total, current, index) => {
     total += (index === 0 ? current * 60 : current);
     return total;
-}, 0);
+  }, 0);
 
 const isMeetingNotExceeding = (workStart, workEnd, meetingStart, meetingDuration) => {
   const workStartInMinutes = clockTimeToMinutes(workStart);
