@@ -1,3 +1,3 @@
-import {createRandomPhotos} from './random-photos-array';
-const photos = createRandomPhotos();
-photos.at(0); // eslint (no-unused-vars)
+import { createThumbnails } from './thumbnails-render.js';
+import { createRandomPhotos } from './data.js';
+createThumbnails(createRandomPhotos());

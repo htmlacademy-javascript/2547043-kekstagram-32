@@ -53,5 +53,3 @@ const createPhotoDescription = () => ({
 const createRandomPhotos = () => Array.from({length: MAX_PHOTOS_COUNT}, createPhotoDescription);
 
 export {createRandomPhotos};
-
-
