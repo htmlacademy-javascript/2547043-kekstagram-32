@@ -1,5 +1,4 @@
-import { thumbnailsContainer, getThumbnailIndexFromId } from './thumbnails';
-import { photosData } from './gallery.js';
+import { thumbnailsContainer, getDataObjectIndexFromThumbnailId } from './thumbnails';
 
 const bigPicture = document.querySelector('.big-picture');
 const closeButton = document.querySelector('#picture-cancel');
@@ -44,26 +43,30 @@ const renderComments = (commentsData) => {
   commentsContainer.append(fragment);
 };
 
-function openBigPicture (evt) {
+function openBigPicture (evt, photosData) {
+  const dataObjectIndex = getDataObjectIndexFromThumbnailId(evt, photosData);
   commentsContainer.innerHTML = '';
   bigPicture.classList.remove('hidden');
   closeButton.addEventListener('click', closeBigPicture);
   document.addEventListener('keydown', closeOnEscape);
   document.body.classList.add('modal-open');
-  const thumbnailIndex = getThumbnailIndexFromId(evt, photosData);
-  image.src = photosData[thumbnailIndex].url;
-  likes.textContent = photosData[thumbnailIndex].likes;
-  renderComments(photosData[thumbnailIndex].comments);
+  image.src = photosData[dataObjectIndex].url;
+  likes.textContent = photosData[dataObjectIndex].likes;
+  renderComments(photosData[dataObjectIndex].comments);
   shownComments.textContent = commentsContainer.children.length;
-  totalComments.textContent = photosData[thumbnailIndex].comments.length;
-  description.textContent = photosData[thumbnailIndex].description;
+  totalComments.textContent = photosData[dataObjectIndex].comments.length;
+  description.textContent = photosData[dataObjectIndex].description;
 }
 
-thumbnailsContainer.addEventListener('click', (evt) => {
-  if (evt.target.closest('.picture')) {
-    evt.preventDefault();
-    openBigPicture(evt);
-    commentsContainerCounter.classList.add('hidden');
-    commentsContainerLoader.classList.add('hiiden');
-  }
-});
+const renderBigPicture = (photosData) => {
+  thumbnailsContainer.addEventListener('click', (evt) => {
+    if (evt.target.closest('.picture')) {
+      evt.preventDefault();
+      openBigPicture(evt, photosData);
+      commentsContainerCounter.classList.add('hidden');
+      commentsContainerLoader.classList.add('hiiden');
+    }
+  });
+};
+
+export { renderBigPicture };
