@@ -35,21 +35,21 @@ const getUniqueRandomId = getUniqueRandomInteger(1, MAX_PHOTOS_COUNT);
 const getUniqueCommentId = getUniqueRandomInteger(0, MAX_COMMENTS_COUNT);
 const getUniqueRandomUrlNumber = getUniqueRandomInteger(1, MAX_PHOTOS_COUNT);
 
-const createComment = () => ({
+const generateComment = () => ({
   id: getUniqueCommentId(),
   avatar: `img/avatar-${getRandomInteger(1, MAX_AVATARS_COUNT)}.svg`,
   message: getRandomArrayElement(SENTENCES),
   name: getRandomArrayElement(NAMES),
 });
 
-const createPhotoDescription = () => ({
+const generatePhoto = () => ({
   id: getUniqueRandomId(),
   url: `photos/${getUniqueRandomUrlNumber()}.jpg`,
   description: 'Template photo description.',
   likes: getRandomInteger(...LIKES_RANGE),
-  comments: Array.from({length: getRandomInteger(0, 30)}, createComment),
+  comments: Array.from({length: getRandomInteger(0, 30)}, generateComment),
 });
 
-const createRandomPhotos = () => Array.from({length: MAX_PHOTOS_COUNT}, createPhotoDescription);
+const generatePhotos = () => Array.from({length: MAX_PHOTOS_COUNT}, generatePhoto);
 
-export {createRandomPhotos};
+export { generatePhotos };
