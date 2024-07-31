@@ -31,6 +31,22 @@ const SENTENCES = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
+const DESCRIPTIONS = [
+  'Не проси уважения. Делай так, чтобы уважали.',
+  'Сила – не в бабках. Ведь бабки – уже старые.',
+  'Из проведённых 64-х боёв у меня 64 победы. Все бои были с тенью.',
+  'Взял нож - режь, взял дошик - ешь.',
+  'Я живу, как карта ляжет. Ты живёшь, как мамка скажет.',
+  'Если заблудился в лесу, иди домой.',
+  'В жизни всегда есть две дороги: одна — первая, а другая — вторая.',
+  'Не будьте эгоистами, в первую очередь думайте о себе!',
+  'Как говорил мой дед, «Я твой дед».',
+  'Если тебе где-то не рады в рваных носках, то и в целых туда идти не стоит.',
+  'Запомни: всего одна ошибка – и ты ошибся.',
+  'Никогда не сдавайтесь, идите к своей цели! А если будет сложно – сдавайтесь.',
+  'Если вы спросите у Чака Норриса: «Который час?», он всегда ответит: «Две секунды до». После того как вы спросите: «Две секунды до чего?», вы получите знаменитый удар ногой по лицу с разворота.'
+];
+
 const getUniqueRandomId = getUniqueRandomInteger(1, MAX_PHOTOS_COUNT);
 const getUniqueCommentId = getUniqueRandomInteger(0, MAX_COMMENTS_COUNT);
 const getUniqueRandomUrlNumber = getUniqueRandomInteger(1, MAX_PHOTOS_COUNT);
@@ -45,7 +61,7 @@ const generateComment = () => ({
 const generatePhoto = () => ({
   id: getUniqueRandomId(),
   url: `photos/${getUniqueRandomUrlNumber()}.jpg`,
-  description: 'Template photo description.',
+  description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(...LIKES_RANGE),
   comments: Array.from({length: getRandomInteger(0, 30)}, generateComment),
 });

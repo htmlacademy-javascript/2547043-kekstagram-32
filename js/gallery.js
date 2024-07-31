@@ -18,4 +18,4 @@ const renderGallery = (pictures) => {
 
 };
 
-export {renderGallery};
+export { renderGallery };
