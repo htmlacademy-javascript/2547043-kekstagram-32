@@ -20,10 +20,4 @@ const renderThumbnails = (pictures, container) => {
   container.append(fragment);
 };
 
-const getPictureIndexFromThumbnailId = (evt, pictures) => {
-  const givenThumbnail = pictures.find((picture)=> String(picture.id) === evt.target.closest('.picture').dataset.thumbnailId);
-  const thumbnailIndex = pictures.indexOf(givenThumbnail);
-  return thumbnailIndex;
-};
-
-export { renderThumbnails, getPictureIndexFromThumbnailId };
+export { renderThumbnails };
