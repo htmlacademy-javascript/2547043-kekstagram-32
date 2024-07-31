@@ -2,7 +2,9 @@ import { generatePhotos } from './data.js';
 import { renderThumbnails } from './thumbnails.js';
 import { renderBigPicture } from './big-picture.js';
 
-const photosData = generatePhotos();
+const container = document.querySelector('.pictures');
 
-renderThumbnails(photosData);
-renderBigPicture(photosData);
+const pictures = generatePhotos();
+
+renderThumbnails(pictures, container);
+renderBigPicture(pictures, container);
