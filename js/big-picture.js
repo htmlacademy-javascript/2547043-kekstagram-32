@@ -9,7 +9,7 @@ const totalCommentsElement = bigPictureElement.querySelector('.social__comment-t
 const shownCommentsElement = bigPictureElement.querySelector('.social__comment-shown-count');
 
 const COMMENTS_DOSE = 5;
-let shownComments = 0;
+let loadedComments = 0;
 let comments = [];
 
 function closeOnEscape (evt) {
@@ -31,12 +31,12 @@ const createComment = ({avatar, message, name}) => {
 
 const renderComments = () => {
   const fragment = document.createDocumentFragment();
-  const futureShownCommentsLength = shownComments + COMMENTS_DOSE;
-  for (let i = shownComments; i < futureShownCommentsLength; i++) {
+  const futureShownCommentsLength = loadedComments + COMMENTS_DOSE;
+  for (let i = loadedComments; i < futureShownCommentsLength; i++) {
     if (comments[i] !== undefined) {
       const comment = createComment(comments[i]);
       fragment.append(comment);
-      shownComments += 1;
+      loadedComments += 1;
     }
   }
   commentsContainerElement.append(fragment);
@@ -55,7 +55,7 @@ function closeBigPicture () {
   closeButtonElement.removeEventListener('click', closeBigPicture);
   document.removeEventListener('keydown', closeOnEscape);
   commentsContainerElement.innerHTML = '';
-  shownComments = 0;
+  loadedComments = 0;
 }
 
 const getPictureDetails = (picture) => {
@@ -66,7 +66,7 @@ const getPictureDetails = (picture) => {
   totalCommentsElement.textContent = picture.comments.length;
 };
 
-function openBigPicture (picture) {
+const openBigPicture = (picture) => {
   comments = picture.comments;
   bigPictureElement.classList.remove('hidden');
   closeButtonElement.addEventListener('click', closeBigPicture);
@@ -76,6 +76,6 @@ function openBigPicture (picture) {
   commentsContainerElement.innerHTML = '';
   getPictureDetails(picture);
   renderComments();
-}
+};
 
 export { openBigPicture };
