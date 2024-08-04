@@ -1,8 +1,21 @@
-import { generatePhotos } from './data.js';
 import { renderThumbnails } from './thumbnails.js';
-import { renderBigPicture } from './big-picture.js';
+import { openBigPicture } from './big-picture.js';
 
-const photosData = generatePhotos();
+const container = document.querySelector('.pictures');
 
-renderThumbnails(photosData);
-renderBigPicture(photosData);
+const renderGallery = (pictures) => {
+
+  renderThumbnails(pictures, container);
+
+  container.addEventListener('click', (evt) => {
+    const thumbnail = evt.target.closest('.picture');
+    if (thumbnail) {
+      evt.preventDefault();
+      const picture = pictures.find((item) => String(item.id) === evt.target.closest('.picture').dataset.thumbnailId);
+      openBigPicture(picture);
+    }
+  });
+
+};
+
+export { renderGallery };

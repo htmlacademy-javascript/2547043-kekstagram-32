@@ -1,4 +1,3 @@
-const thumbnailsContainer = document.querySelector('.pictures');
 const thumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
 const createThumbnail = ({id, url, description, likes, comments}) => {
@@ -12,19 +11,13 @@ const createThumbnail = ({id, url, description, likes, comments}) => {
   return thumbnail;
 };
 
-const renderThumbnails = (thumbnailsData) => {
+const renderThumbnails = (pictures, container) => {
   const fragment = document.createDocumentFragment();
-  thumbnailsData.forEach((thumbnailData) => {
-    const thumbnail = createThumbnail(thumbnailData);
+  pictures.forEach((picture) => {
+    const thumbnail = createThumbnail(picture);
     fragment.append(thumbnail);
   });
-  thumbnailsContainer.append(fragment);
+  container.append(fragment);
 };
 
-const getDataObjectIndexFromThumbnailId = (evt, thumbnailsData) => {
-  const givenThumbnail = thumbnailsData.find((thumbnailData)=> String(thumbnailData.id) === evt.target.closest('.picture').dataset.thumbnailId);
-  const thumbnailIndex = thumbnailsData.indexOf(givenThumbnail);
-  return thumbnailIndex;
-};
-
-export { renderThumbnails, getDataObjectIndexFromThumbnailId, thumbnailsContainer };
+export { renderThumbnails };
