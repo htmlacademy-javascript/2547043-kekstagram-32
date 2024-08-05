@@ -1,6 +1,6 @@
 import { setupValidation } from './upload-form-validation.js';
 import { initializeScale, destroyScale } from './scale.js';
-import { applyEffect, initializeSlider, destroySlider } from './effects.js';
+import { initializeSlider, destroySlider } from './effects.js';
 
 // todo: import pristine object instance from upload-form-validation.js
 
@@ -11,8 +11,6 @@ const overlayCloseButton = document.querySelector('.img-upload__cancel');
 const uploadForm = document.querySelector('.img-upload__form');
 const hashtagsField = uploadForm.querySelector('.text__hashtags');
 const commentsField = uploadForm.querySelector('.text__description');
-
-const effectsList = document.querySelector('.effects__list');
 
 function closeOnEscapeKeydown (evt) {
   if(evt.key === 'Escape') {
@@ -33,6 +31,7 @@ function closeUploadOverlay () {
   document.body.classList.remove('modal-open');
   uploadButton.value = '';
   destroyScale();
+  destroySlider();
   overlayCloseButton.removeEventListener('click', closeUploadOverlay);
   document.removeEventListener('keydown', closeOnEscapeKeydown);
   commentsField.removeEventListener('keydown', onInputEscapeKeydown);
@@ -43,14 +42,12 @@ function openUploadOverlay () {
   uploadOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
   initializeScale();
+  initializeSlider();
   overlayCloseButton.addEventListener('click', closeUploadOverlay);
   document.addEventListener('keydown', closeOnEscapeKeydown);
   commentsField.addEventListener('keydown', onInputEscapeKeydown);
   hashtagsField.addEventListener('keydown', onInputEscapeKeydown);
 }
-
-effectsList.addEventListener('change', applyEffect);
-initializeSlider();
 
 setupValidation(uploadForm, hashtagsField, commentsField);
 
