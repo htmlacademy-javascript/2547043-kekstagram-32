@@ -66,9 +66,9 @@ const setupValidation = (form, hashtagsField, commentsField) => {
     evt.preventDefault();
     pristine.validate();
     if (pristine.validate()) {
-      console.log('Форма отправлена');
-    } else {
-      console.log('Форма не отправлена');
+    //   console.log('Форма отправлена');
+    // } else {
+    //   console.log('Форма не отправлена');
     }
   });
 
