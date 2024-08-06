@@ -4,9 +4,9 @@ const MAX_HASHTAGS = 5;
 const setupValidation = (form, hashtagsField, commentsField) => {
 
   const pristine = new Pristine(form, {
-    classTo: '.img-upload__field-wrapper',
-    errorTextParent: '.img-upload__field-wrapper',
-    errorTextClass: '.img-upload__field-wrapper--error',
+    classTo: 'img-upload__field-wrapper',
+    errorTextParent: 'img-upload__field-wrapper',
+    errorTextClass: 'img-upload__field-wrapper--error',
   });
 
   const hasUniqueHashtags = (hashtagsArray) => {
@@ -59,16 +59,16 @@ const setupValidation = (form, hashtagsField, commentsField) => {
   pristine.addValidator(
     commentsField,
     validateComment,
-    getCommentsErrorMessage
+    getCommentsErrorMessage()
   );
 
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
     pristine.validate();
     if (pristine.validate()) {
-    //   console.log('Форма отправлена');
-    // } else {
-    //   console.log('Форма не отправлена');
+      console.log('Форма отправлена');
+    } else {
+      console.log('Форма не отправлена');
     }
   });
 
