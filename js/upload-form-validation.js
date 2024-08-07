@@ -65,11 +65,11 @@ const setupValidation = (form, hashtagsField, commentsField) => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
     pristine.validate();
-    if (pristine.validate()) {
-      console.log('Форма отправлена');
-    } else {
-      console.log('Форма не отправлена');
-    }
+    // if (pristine.validate()) {
+    //   console.log('Форма отправлена');
+    // } else {
+    //   console.log('Форма не отправлена');
+    // }
   });
 
 };
